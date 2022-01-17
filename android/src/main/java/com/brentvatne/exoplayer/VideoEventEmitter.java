@@ -462,15 +462,15 @@ class VideoEventEmitter {
     }
 
     void stop() {
-        receiveEvent(EVENT_STOP, event);
+        receiveEvent(EVENT_STOP, null);
     }
 
     void resumePlayback() {
-        receiveEvent(EVENT_RESUME, event);
+        receiveEvent(EVENT_RESUME, null);
     }
 
     void pausePlayback() {
-        receiveEvent(EVENT_STALLED, event);
+        receiveEvent(EVENT_STALLED, null);
     }
 
     private void receiveEvent(@VideoEvents String type, WritableMap event) {
