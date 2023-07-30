@@ -445,20 +445,19 @@ class VideoEventEmitter {
         receiveEvent(EVENT_AUDIO_BECOMING_NOISY, null);
     }
 
-<<<<<<< HEAD:android/src/main/java/com/brentvatne/exoplayer/VideoEventEmitter.java
     void receiveAdEvent(String event) {
         WritableMap map = Arguments.createMap();
         map.putString("event", event);
 
         receiveEvent(EVENT_ON_RECEIVE_AD_EVENT, map);
-=======
+    }
+
     void showControls() {
         receiveEvent(EVENT_SHOW_CONTROLS, null);
     }
 
     void hideControls() {
         receiveEvent(EVENT_HIDE_CONTROLS, null);
->>>>>>> ab94d4c (Added the show / hide events for the controls in the ExoPlayer):android-exoplayer/src/main/java/com/brentvatne/exoplayer/VideoEventEmitter.java
     }
 
     void stop() {
