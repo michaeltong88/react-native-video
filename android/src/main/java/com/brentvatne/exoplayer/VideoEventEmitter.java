@@ -60,6 +60,7 @@ class VideoEventEmitter {
 
     private static final String EVENT_SHOW_CONTROLS = "onShowControls";
     private static final String EVENT_HIDE_CONTROLS = "onHideControls";
+    private static final String EVENT_STOP = "onVideoStop";
 
     static final String[] Events = {
             EVENT_LOAD_START,
@@ -88,7 +89,8 @@ class VideoEventEmitter {
             EVENT_BANDWIDTH,
             EVENT_ON_RECEIVE_AD_EVENT,
             EVENT_SHOW_CONTROLS,
-            EVENT_HIDE_CONTROLS
+            EVENT_HIDE_CONTROLS,
+            EVENT_STOP
     };
 
     @Retention(RetentionPolicy.SOURCE)
@@ -119,7 +121,8 @@ class VideoEventEmitter {
             EVENT_BANDWIDTH,
             EVENT_ON_RECEIVE_AD_EVENT,
             EVENT_SHOW_CONTROLS,
-            EVENT_HIDE_CONTROLS
+            EVENT_HIDE_CONTROLS,
+            EVENT_STOP
     })
     @interface VideoEvents {
     }
@@ -456,6 +459,18 @@ class VideoEventEmitter {
     void hideControls() {
         receiveEvent(EVENT_HIDE_CONTROLS, null);
 >>>>>>> ab94d4c (Added the show / hide events for the controls in the ExoPlayer):android-exoplayer/src/main/java/com/brentvatne/exoplayer/VideoEventEmitter.java
+    }
+
+    void stop() {
+        receiveEvent(EVENT_STOP, event);
+    }
+
+    void resumePlayback() {
+        receiveEvent(EVENT_RESUME, event);
+    }
+
+    void pausePlayback() {
+        receiveEvent(EVENT_STALLED, event);
     }
 
     private void receiveEvent(@VideoEvents String type, WritableMap event) {
