@@ -371,8 +371,10 @@ class ReactExoplayerView extends FrameLayout implements
         reLayout(playerControlView);
         if (playerControlView.isVisible()) {
             playerControlView.hide();
+            eventEmitter.hideControls();
         } else {
             playerControlView.show();
+            eventEmitter.showControls();
         }
     }
 
@@ -395,6 +397,7 @@ class ReactExoplayerView extends FrameLayout implements
 
         // Setting the player for the playerControlView
         playerControlView.setPlayer(player);
+        eventEmitter.showControls();
         playPauseControlContainer = playerControlView.findViewById(R.id.exo_play_pause_container);
 
         // Invoking onClick event for exoplayerView
@@ -922,11 +925,13 @@ class ReactExoplayerView extends FrameLayout implements
             this.hasAudioFocus = requestAudioFocus();
             if (this.hasAudioFocus) {
                 player.setPlayWhenReady(true);
+                eventEmitter.resumePlayback();
             }
         } else {
             // ensure playback is not ENDED, else it will trigger another ended event
             if (player.getPlaybackState() != Player.STATE_ENDED) {
                 player.setPlayWhenReady(false);
+                eventEmitter.pausePlayback();
             }
         }
     }
@@ -1098,6 +1103,7 @@ class ReactExoplayerView extends FrameLayout implements
                 // Setting the visibility for the playerControlView
                 if (playerControlView != null) {
                     playerControlView.show();
+                    eventEmitter.showControls();
                 }
                 setKeepScreenOn(preventsDisplaySleepDuringVideoPlayback);
                 break;
