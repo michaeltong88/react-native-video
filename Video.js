@@ -259,6 +259,18 @@ export default class Video extends Component {
     }
   };
 
+  _onShowControls = (event) => {
+    if (this.props.onShowControls) {
+      this.props.onShowControls(event.nativeEvent);
+    }
+  };
+
+  _onHideControls = (event) => {
+    if (this.props.onHideControls) {
+      this.props.onHideControls(event.nativeEvent);
+    }
+  };
+
   _onGetLicense = (event) => {
     if (this.props.drm && this.props.drm.getLicense instanceof Function) {
       const data = event.nativeEvent;
@@ -374,6 +386,8 @@ export default class Video extends Component {
       onPictureInPictureStatusChanged: this._onPictureInPictureStatusChanged,
       onRestoreUserInterfaceForPictureInPictureStop: this._onRestoreUserInterfaceForPictureInPictureStop,
       onReceiveAdEvent: this._onReceiveAdEvent,
+      onShowControls: this._onShowControls,
+      onHideControls: this._onHideControls,
     });
 
     const posterStyle = {
@@ -431,6 +445,8 @@ Video.propTypes = {
   onVideoFullscreenPlayerDidPresent: PropTypes.func,
   onVideoFullscreenPlayerWillDismiss: PropTypes.func,
   onVideoFullscreenPlayerDidDismiss: PropTypes.func,
+  onShowControls: PropTypes.func,
+  onHideControls: PropTypes.func,
 
   /* Wrapper component */
   source: PropTypes.oneOfType([

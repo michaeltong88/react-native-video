@@ -58,6 +58,9 @@ class VideoEventEmitter {
     private static final String EVENT_VIDEO_TRACKS = "onVideoTracks";
     private static final String EVENT_ON_RECEIVE_AD_EVENT = "onReceiveAdEvent";
 
+    private static final String EVENT_SHOW_CONTROLS = "onShowControls";
+    private static final String EVENT_HIDE_CONTROLS = "onHideControls";
+
     static final String[] Events = {
             EVENT_LOAD_START,
             EVENT_LOAD,
@@ -83,7 +86,9 @@ class VideoEventEmitter {
             EVENT_TEXT_TRACKS,
             EVENT_VIDEO_TRACKS,
             EVENT_BANDWIDTH,
-            EVENT_ON_RECEIVE_AD_EVENT
+            EVENT_ON_RECEIVE_AD_EVENT,
+            EVENT_SHOW_CONTROLS,
+            EVENT_HIDE_CONTROLS
     };
 
     @Retention(RetentionPolicy.SOURCE)
@@ -112,7 +117,9 @@ class VideoEventEmitter {
             EVENT_TEXT_TRACKS,
             EVENT_VIDEO_TRACKS,
             EVENT_BANDWIDTH,
-            EVENT_ON_RECEIVE_AD_EVENT
+            EVENT_ON_RECEIVE_AD_EVENT,
+            EVENT_SHOW_CONTROLS,
+            EVENT_HIDE_CONTROLS
     })
     @interface VideoEvents {
     }
@@ -435,11 +442,20 @@ class VideoEventEmitter {
         receiveEvent(EVENT_AUDIO_BECOMING_NOISY, null);
     }
 
+<<<<<<< HEAD:android/src/main/java/com/brentvatne/exoplayer/VideoEventEmitter.java
     void receiveAdEvent(String event) {
         WritableMap map = Arguments.createMap();
         map.putString("event", event);
 
         receiveEvent(EVENT_ON_RECEIVE_AD_EVENT, map);
+=======
+    void showControls() {
+        receiveEvent(EVENT_SHOW_CONTROLS, null);
+    }
+
+    void hideControls() {
+        receiveEvent(EVENT_HIDE_CONTROLS, null);
+>>>>>>> ab94d4c (Added the show / hide events for the controls in the ExoPlayer):android-exoplayer/src/main/java/com/brentvatne/exoplayer/VideoEventEmitter.java
     }
 
     private void receiveEvent(@VideoEvents String type, WritableMap event) {
