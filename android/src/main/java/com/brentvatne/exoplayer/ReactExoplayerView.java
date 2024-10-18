@@ -406,10 +406,10 @@ public class ReactExoplayerView extends FrameLayout implements
         reLayoutControls();
         if (playerControlView.isVisible()) {
             playerControlView.hide();
-            eventEmitter.onHideControls();
+            eventEmitter.onHideControls.invoke();
         } else {
             playerControlView.show();
-            eventEmitter.onShowControls();
+            eventEmitter.onShowControls.invoke();
         }
     }
 
@@ -429,7 +429,7 @@ public class ReactExoplayerView extends FrameLayout implements
 
         // Setting the player for the playerControlView
         playerControlView.setPlayer(player);
-        eventEmitter.onShowControls();
+        eventEmitter.onShowControls.invoke();
         playPauseControlContainer = playerControlView.findViewById(R.id.exo_play_pause_container);
 
         // Invoking onClick event for exoplayerView
@@ -1365,7 +1365,7 @@ public class ReactExoplayerView extends FrameLayout implements
         if (player != null) {
             if (!player.getPlayWhenReady()) {
                 setPlayWhenReady(true);
-                eventEmitter.onResumePlayback();
+                eventEmitter.onResumePlayback.invoke();
             }
             setKeepScreenOn(preventsDisplaySleepDuringVideoPlayback);
         }
@@ -1375,7 +1375,7 @@ public class ReactExoplayerView extends FrameLayout implements
         if (player != null) {
             if (player.getPlayWhenReady()) {
                 setPlayWhenReady(false);
-                eventEmitter.onPausePlayback();
+                eventEmitter.onPausePlayback.invoke();
             }
         }
         setKeepScreenOn(false);
@@ -1472,7 +1472,7 @@ public class ReactExoplayerView extends FrameLayout implements
                     // Setting the visibility for the playerControlView
                     if (playerControlView != null) {
                         playerControlView.show();
-                        eventEmitter.onShowControls();
+                        eventEmitter.onShowControls.invoke();
                     }
                     setKeepScreenOn(preventsDisplaySleepDuringVideoPlayback);
                     break;
